@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0"
+      prefWidth="972.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.sistemaventas.controlador.HelloController">
+    <children>
+        <TitledPane animated="false" prefHeight="273.0" prefWidth="972.0" text="CATEGORÍA">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
+                            style="-fx-background-color: #5D6D7E;">
+                    <children>
+                        <Label layoutX="59.0" layoutY="29.0" prefHeight="17.0" prefWidth="112.0" text="CÓDIGO"
+                               textFill="#fcf9f9">
+                            <font>
+                                <Font name="System Bold" size="20.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="59.0" layoutY="82.0" prefHeight="17.0" prefWidth="112.0" text="NOMBRE"
+                               textFill="#f5f5f5">
+                            <font>
+                                <Font size="19.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="59.0" layoutY="122.0" prefHeight="17.0" prefWidth="112.0" text="DESCRIPCIÓN"
+                               textFill="WHITE">
+                            <font>
+                                <Font size="16.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="codigoText" layoutX="191.0" layoutY="31.0"/>
+                        <TextField fx:id="nombreText" layoutX="191.0" layoutY="79.0"/>
+                        <TextField fx:id="descripcionText" layoutX="191.0" layoutY="122.0"/>
+                        <Button layoutX="433.0" layoutY="31.0" mnemonicParsing="false" onAction="#onInsertarButtonClick"
+                                prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Guardar"
+                                textFill="#f8f8f8"/>
+                        <Button layoutX="433.0" layoutY="71.0" mnemonicParsing="false" onAction="#onLimpiarButtonClick"
+                                prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: red;" text="Limpiar"
+                                textFill="#f8f7f7"/>
+                    </children>
+                </AnchorPane>
+            </content>
+        </TitledPane>
+        <TableView fx:id="tablaCategorias" prefHeight="316.0" prefWidth="972.0" style="-fx-background-color: #5DADE2;">
+            <columns>
+                <TableColumn fx:id="colid" prefWidth="75.0" text="id"/>
+                <TableColumn fx:id="colCodigo" prefWidth="138.0" text="CÓDIGO"/>
+                <TableColumn fx:id="colNombre" prefWidth="178.0" text="NOMBRE"/>
+                <TableColumn fx:id="colDescripcion" prefWidth="222.0" text="DESCRIPCIÓN"/>
+                <TableColumn fx:id="colFechaCreacion" prefWidth="193.0" text="FECHA CREACION"/>
+            </columns>
+        </TableView>
+    </children>
+</VBox>
