@@ -19,12 +19,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
-
     @FXML
     private TableView<Categoria> tablaCategorias;
-
-    @FXML
-    private TableColumn<Categoria, String> colId;
     @FXML
     private TableColumn<Categoria, String> colCodigo;
     @FXML
@@ -39,19 +35,18 @@ public class HelloController implements Initializable {
     private TextField nombreText;
     @FXML
     private TextField descripcionText;
-
     private ObservableList<Categoria> categoriasObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listarCategorias();
+
     }
 
     public void listarCategorias() {
         CategoriaDao categoriaDao = new CategoriaDao();
         List<Categoria> categorias = categoriaDao.listarCategorias();
         categoriasObservableList.addAll(categorias);
-        colId.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getId())));
         colCodigo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodigo()));
         colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         colDescripcion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescripcion()));
@@ -59,7 +54,6 @@ public class HelloController implements Initializable {
         colFechaCreacion.setCellValueFactory(cellData -> new SimpleStringProperty(formatter.format(cellData.getValue().getFechaCreacion())));
         tablaCategorias.setItems(categoriasObservableList);
     }
-
     public void onInsertarButtonClick(ActionEvent actionEvent) {
         CategoriaDao categoriaDao = new CategoriaDao();
         Categoria categoria = new Categoria();
@@ -78,5 +72,4 @@ public class HelloController implements Initializable {
         nombreText.clear();
         descripcionText.clear();
     }
-
 }
