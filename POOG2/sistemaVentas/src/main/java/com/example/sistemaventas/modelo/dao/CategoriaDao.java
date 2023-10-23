@@ -1,9 +1,7 @@
 package com.example.sistemaventas.modelo.dao;
 
-
 import com.example.sistemaventas.modelo.dominio.Categoria;
 import com.example.sistemaventas.util.ConexionDB;
-
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,32 +11,23 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CategoriaDao {
     private final ConexionDB conexionDB;
     private PreparedStatement preparedStatement;
 
-
-    public CategoriaDao() {
-        this.conexionDB = new ConexionDB();
-    }
-
+    public CategoriaDao() { this.conexionDB = new ConexionDB(); }
 
     public void creaTablaCategoria() {
+        String sqlTablaCategoria = "CREATE TABLE IF NOT EXISTS categoria (id integer primary key,codigo text,nombre text, descripcion text,fecha_creacion DATE)";
 
-
-        String sql_tabla_categoria = "CREATE TABLE IF NOT EXISTS categoria (id integer primary key,codigo text,nombre text, descripcion text,fecha_creacion DATE)";
         try {
-            preparedStatement = conexionDB.connection.prepareStatement(sql_tabla_categoria);
+            preparedStatement = conexionDB.connection.prepareStatement(sqlTablaCategoria);
             preparedStatement.execute();
             System.out.println("Tabla categoria creada o actualizada correctamente");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
-
-
 
     public List<Categoria> listarCategorias() {
         creaTablaCategoria();
@@ -64,8 +53,6 @@ public class CategoriaDao {
         System.out.println("Listar categoria correctamente");
         return categorias;
     }
-
-
     public boolean insertarCategoria(Categoria categoria) {
         creaTablaCategoria();
         String consultaInsertarCategoria = "INSERT INTO categoria(codigo,nombre,descripcion,fecha_creacion) VALUES(?,?,?,?)";
@@ -84,4 +71,5 @@ public class CategoriaDao {
             throw new RuntimeException(e);
         }
     }
+
 }

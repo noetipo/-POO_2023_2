@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ventas" uuid="8088162d-8963-4dde-8b63-5595ef0445d1">
+    <data-source source="LOCAL" name="ventas" uuid="0a99f667-082a-44b2-87e6-e048ccc50a9b">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\LAB-SOFTWARE\IdeaProjects\POOG2\sistemaVentas\ventas.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\LAB-SOFTWARE\IdeaProjects\POOG1\sistemaVentas\ventas.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.43.0/org/xerial/sqlite-jdbc/3.43.0.0/sqlite-jdbc-3.43.0.0.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="ventas [2]" uuid="97e222de-5f1c-4628-a5e2-f4ca75f8ce29">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\LAB-SOFTWARE\IdeaProjects\POO_2023_2\POOG1\sistemaVentas\ventas.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>
