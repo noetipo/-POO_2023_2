@@ -36,10 +36,16 @@
                         <TextField fx:id="descripcionText" layoutX="191.0" layoutY="122.0"/>
                         <Button layoutX="433.0" layoutY="31.0" mnemonicParsing="false" onAction="#onInsertarButtonClick"
                                 prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Guardar"
-                                textFill="#f8f8f8"/>
+                                textFill="#f8f8f8" fx:id="guardarBtn"/>
                         <Button layoutX="433.0" layoutY="71.0" mnemonicParsing="false" onAction="#onLimpiarButtonClick"
                                 prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: red;" text="Limpiar"
                                 textFill="#f8f7f7"/>
+                        <Button layoutX="433.0" layoutY="110.0" mnemonicParsing="false"
+                                onAction="#onSeleccionarButtonClick" prefHeight="25.0" prefWidth="157.0"
+                                style="-fx-background-color: blue;" text="Editar" textFill="#f8f8f8"/>
+                        <Button layoutX="433.0" layoutY="154.0" mnemonicParsing="false"
+                                onAction="#eliminarButtonClick" prefHeight="25.0" prefWidth="157.0"
+                                style="-fx-background-color: blue;" text="Eliminar" textFill="#f8f8f8"/>
                     </children>
                 </AnchorPane>
             </content>

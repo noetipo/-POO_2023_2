@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -40,6 +41,9 @@ public class HelloController implements Initializable {
     @FXML
     private TextField descripcionText;
     private ObservableList<Categoria> categoriasObservableList = FXCollections.observableArrayList();
+    @FXML
+    public Button guardarBtn;
+    Integer idCategoria = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,6 +51,7 @@ public class HelloController implements Initializable {
     }
 
     public void listarCategorias() {
+        tablaCategorias.getItems().clear();
         CategoriaDao categoriaDao = new CategoriaDao();
         List<Categoria> categorias = categoriaDao.listarCategorias();
         categoriasObservableList.addAll(categorias);
@@ -57,24 +62,65 @@ public class HelloController implements Initializable {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         colFechaCreacion.setCellValueFactory(cellData -> new SimpleStringProperty(formatter.format(cellData.getValue().getFechaCreacion())));
         tablaCategorias.setItems(categoriasObservableList);
+
+        tablaCategorias.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if (newValue != null) {
+                        seleccionarCategoria(newValue);
+                    }
+                }
+        );
+
+    }
+
+    private void seleccionarCategoria(Categoria categoria) {
+        System.out.println(categoria.getId());
+        idCategoria = categoria.getId();
     }
 
     public void onInsertarButtonClick(ActionEvent actionEvent) {
         CategoriaDao categoriaDao = new CategoriaDao();
         Categoria categoria = new Categoria();
-        categoria.setCodigo(codigoText.getText());
-        categoria.setNombre(nombreText.getText());
-        categoria.setDescripcion(descripcionText.getText());
-        categoria.setFechaCreacion(new Date());
-        categoriaDao.insertarCategoria(categoria);
+        if (idCategoria == 0) {
+            categoria.setCodigo(codigoText.getText());
+            categoria.setNombre(nombreText.getText());
+            categoria.setDescripcion(descripcionText.getText());
+            categoria.setFechaCreacion(new Date());
+            categoriaDao.insertarCategoria(categoria);
+        } else {
+            categoria.setId(idCategoria);
+            categoria.setCodigo(codigoText.getText());
+            categoria.setNombre(nombreText.getText());
+            categoria.setDescripcion(descripcionText.getText());
+            categoria.setFechaCreacion(new Date());
+            categoriaDao.actulizarCategoria(categoria);
+        }
+
         listarCategorias();
         onLimpiarButtonClick(null);
+        idCategoria=0;
+        guardarBtn.setText("Guardar");
     }
 
     public void onLimpiarButtonClick(ActionEvent actionEvent) {
         codigoText.clear();
         nombreText.clear();
         descripcionText.clear();
+        guardarBtn.setText("Guardar");
+        idCategoria = 0;
+    }
+    public void onSeleccionarButtonClick(ActionEvent actionEvent) {
+        CategoriaDao categoriaDao = new CategoriaDao();
+        Categoria categoria = categoriaDao.categoriaPorId(idCategoria);
+        codigoText.setText(categoria.getCodigo());
+        nombreText.setText(categoria.getNombre());
+        descripcionText.setText(categoria.getDescripcion());
+        guardarBtn.setText("Guardar Editar");
+    }
+    public void eliminarButtonClick(ActionEvent actionEvent) {
+        CategoriaDao categoriaDao = new CategoriaDao();
+        categoriaDao.eliminarCategoriaPorId(idCategoria);
+        listarCategorias();
     }
 
 

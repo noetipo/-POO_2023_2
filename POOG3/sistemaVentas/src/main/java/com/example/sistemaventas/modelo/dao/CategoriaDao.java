@@ -74,5 +74,62 @@ public class CategoriaDao {
             throw new RuntimeException(e);
         }
     }
+    public Categoria categoriaPorId(Integer id) {
+        creaTablaCategoria();
+        String consultaCategoriaPorId = "select id, codigo, nombre, descripcion, fecha_creacion from categoria where id =?";
+        Categoria categoria = new Categoria();
+        try {
+            preparedStatement = conexionDB.connection.prepareStatement(consultaCategoriaPorId);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                categoria.setId(resultSet.getInt(1));
+                categoria.setCodigo(resultSet.getString(2));
+                categoria.setCodigo(resultSet.getString(2));
+                categoria.setNombre(resultSet.getString(3));
+                categoria.setDescripcion(resultSet.getString(4));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        this.conexionDB.cerrarConexionDB();
+        System.out.println("Lista categoria por id correctamente");
+        return categoria;
+    }
+    public boolean actulizarCategoria(Categoria categoria) {
+        creaTablaCategoria();
+        String consultaInsertarCategoria = "UPDATE categoria SET codigo =?,nombre=?,descripcion=? WHERE id=?";
+        try {
+            preparedStatement = conexionDB.connection.prepareStatement(consultaInsertarCategoria);
+            preparedStatement.setString(1, categoria.getCodigo());
+            preparedStatement.setString(2, categoria.getNombre());
+            preparedStatement.setString(3, categoria.getDescripcion());
+            preparedStatement.setInt(4, categoria.getId());
+            preparedStatement.execute();
+            System.out.println("Actualizar categoria correctamente");
+            this.conexionDB.cerrarConexionDB();
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void eliminarCategoriaPorId(Integer id) {
+        creaTablaCategoria();
+        String consultaCategoriaPorId = "delete  from categoria where id =?";
+        try {
+            preparedStatement = conexionDB.connection.prepareStatement(consultaCategoriaPorId);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        this.conexionDB.cerrarConexionDB();
+        System.out.println("eliminacion correcta");
+
+
+    }
+
 
 }
