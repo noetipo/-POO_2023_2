@@ -3,11 +3,11 @@ package com.example.sistemaventas.modelo.dominio;
 import java.util.Date;
 
 public class Categoria {
-    private Integer id;
-    private String codigo;
-    private String nombre;
-    private String descripcion;
-    private Date fechaCreacion;
+    protected Integer id;
+    protected String codigo;
+    protected String nombre;
+    protected String descripcion;
+    protected Date fechaCreacion;
 
     public Integer getId() {
         return id;

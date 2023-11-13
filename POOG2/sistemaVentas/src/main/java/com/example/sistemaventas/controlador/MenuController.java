@@ -44,4 +44,7 @@ public class MenuController implements Initializable {
         bp.setCenter(root);
     }
 
+    public void producto(MouseEvent mouseEvent) {
+        loadPage("/com/example/sistemaventas/producto-view");
+    }
 }
