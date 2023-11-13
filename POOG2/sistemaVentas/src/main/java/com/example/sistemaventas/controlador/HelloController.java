@@ -91,7 +91,7 @@ public class HelloController implements Initializable {
         idCategoria = 0;
         onLimpiarButtonClick(null);
         listarCategorias();
-
+        guardarBtn.setText("Guardar");
     }
 
 
@@ -110,7 +110,7 @@ public class HelloController implements Initializable {
     }
 
     private void seleccionarCategoria(Categoria categoria) {
-        System.out.println("id:"+ categoria.getId());
+        System.out.println(categoria.getId());
         idCategoria = categoria.getId();
     }
     public void eliminarButtonClick(ActionEvent actionEvent) {

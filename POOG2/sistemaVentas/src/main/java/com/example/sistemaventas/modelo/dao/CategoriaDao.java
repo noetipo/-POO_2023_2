@@ -82,7 +82,7 @@ public class CategoriaDao {
             if (resultSet.next()) {
                 categoria.setId(resultSet.getInt(1));
                 categoria.setCodigo(resultSet.getString(2));
-                categoria.setCodigo(resultSet.getString(2));
+                //categoria.setCodigo(resultSet.getString(2));
                 categoria.setNombre(resultSet.getString(3));
                 categoria.setDescripcion(resultSet.getString(4));
             }
@@ -90,7 +90,7 @@ public class CategoriaDao {
             throw new RuntimeException(e);
         }
         this.conexionDB.cerrarConexionDB();
-        System.out.println("Lista categoria por id correctamente");
+        System.out.println("categoriaPorId de id = " + id + " devuelto correctamente");
         return categoria;
     }
 
@@ -113,7 +113,7 @@ public class CategoriaDao {
     }
     public void eliminarCategoriaPorId(Integer id) {
         creaTablaCategoria();
-        String consultaCategoriaPorId = "delete  from categoria where id =?";
+        String consultaCategoriaPorId = "delete  from categoria where id=?";
         try {
             preparedStatement = conexionDB.connection.prepareStatement(consultaCategoriaPorId);
             preparedStatement.setInt(1, id);
