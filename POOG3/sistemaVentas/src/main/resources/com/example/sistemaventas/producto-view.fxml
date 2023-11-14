@@ -44,6 +44,5 @@
                 <TableColumn fx:id="colNombreCategoria" prefWidth="170.0" text="CATEGORIA" />
             </columns>
         </TableView>
-        <ComboBox prefWidth="150.0" />
     </children>
 </VBox>
