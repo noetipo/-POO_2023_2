@@ -117,7 +117,6 @@ public class ProductoController implements Initializable {
     }
 
     public void onInsertarButtonClick(ActionEvent actionEvent) {
-        System.out.println("click boton guardar");
         ProductoDao productoDao = new ProductoDao();
         Producto producto = new Producto();
         if (idProducto == 0) {
@@ -158,7 +157,7 @@ public class ProductoController implements Initializable {
         codigoText.setText(producto.getCodigoProducto());
         nombreText.setText(producto.getNombreProducto());
         descripcionText.setText(producto.getDescripcionProducto());
-        Categoria categoria = new Categoria();
+        Categoria categoria= new Categoria();
         categoria.setId(producto.getId());
         categoria.setNombre(producto.getNombre());
         categoriaBox.getSelectionModel().select(categoria);
@@ -174,5 +173,4 @@ public class ProductoController implements Initializable {
         productoDao.eliminarProductoPorId(idProducto);
         listarProductos();
     }
-
 }

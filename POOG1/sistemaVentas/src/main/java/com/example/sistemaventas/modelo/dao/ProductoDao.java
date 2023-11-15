@@ -59,7 +59,6 @@ public class ProductoDao {
     }
 
     public boolean insertarProducto(Producto producto) {
-        System.out.println(producto.toString());
         creaTablaProducto();
         String consultaInsertarProducto = "INSERT INTO producto(codigo, nombre, descripcion, fecha_creacion, id_categoria) VALUES(?,?,?,?,?)";
         try {
