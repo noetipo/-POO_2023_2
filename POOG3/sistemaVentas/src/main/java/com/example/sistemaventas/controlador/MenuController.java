@@ -22,11 +22,11 @@ public class MenuController implements Initializable {
     }
 
     public void categoria(MouseEvent mouseEvent) {
-        loadPage("/com/example/sistemaventas/hello-view");
+        loadPage("/com/example/sistemaventas/hello-view.fxml");
     }
 
     public void cliente(MouseEvent mouseEvent) {
-        loadPage("/com/example/sistemaventas/cliente-view");
+        loadPage("/com/example/sistemaventas/cliente-view.fxml");
     }
 
     @Override
@@ -37,7 +37,7 @@ public class MenuController implements Initializable {
     private void loadPage(String page) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource(page + ".fxml"));
+            root = FXMLLoader.load(getClass().getResource(page));
         } catch (IOException e) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -45,6 +45,10 @@ public class MenuController implements Initializable {
     }
 
     public void producto(MouseEvent mouseEvent) {
-        loadPage("/com/example/sistemaventas/producto-view");
+        loadPage("/com/example/sistemaventas/producto-view.fxml");
+    }
+
+    public void prueba(MouseEvent mouseEvent) {
+loadPage("/com/example/sistemaventas/prueba.fxml");
     }
 }

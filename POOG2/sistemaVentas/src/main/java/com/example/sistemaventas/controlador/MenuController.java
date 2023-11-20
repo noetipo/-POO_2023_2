@@ -47,4 +47,8 @@ public class MenuController implements Initializable {
     public void producto(MouseEvent mouseEvent) {
         loadPage("/com/example/sistemaventas/producto-view");
     }
+
+    public void venta(MouseEvent mouseEvent) {
+        loadPage("/com/example/sistemaventas/venta-view");
+    }
 }

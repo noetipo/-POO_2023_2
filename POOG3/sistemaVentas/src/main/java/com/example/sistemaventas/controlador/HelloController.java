@@ -65,13 +65,17 @@ public class HelloController implements Initializable {
 
         tablaCategorias.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
+
                     if (newValue != null) {
+                        System.out.println(newValue.toString());
                         seleccionarCategoria(newValue);
                     }
                 }
         );
 
     }
+
+
 
     private void seleccionarCategoria(Categoria categoria) {
         System.out.println(categoria.getId());

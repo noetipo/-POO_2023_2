@@ -31,6 +31,11 @@
                   <Font size="16.0" />
                </font>
             </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#prueba" prefHeight="33.0" prefWidth="117.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Prueba" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
             </children>
         </VBox>
     </left>

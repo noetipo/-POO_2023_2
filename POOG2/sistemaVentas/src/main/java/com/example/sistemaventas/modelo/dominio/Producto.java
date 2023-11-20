@@ -7,6 +7,7 @@ public class Producto extends Categoria {
     private String codigoProducto;
     private String nombreProducto;
     private String descripcionProducto;
+    private Double precioProducto;
     private Date fechaCreacionProducto;
 
     public Integer getIdProducto() {
@@ -39,6 +40,14 @@ public class Producto extends Categoria {
 
     public void setDescripcionProducto(String descripcionProducto) {
         this.descripcionProducto = descripcionProducto;
+    }
+
+    public Double getPrecioProducto() {
+        return precioProducto;
+    }
+
+    public void setPrecioProducto(Double precioProducto) {
+        this.precioProducto = precioProducto;
     }
 
     public Date getFechaCreacionProducto() {

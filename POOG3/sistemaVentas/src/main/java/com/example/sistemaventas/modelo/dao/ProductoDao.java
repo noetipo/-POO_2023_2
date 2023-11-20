@@ -48,6 +48,7 @@ public class ProductoDao {
                 producto.setFechaCreacionProducto(formatter.parse(resultSet.getString(5)));
                 producto.setCodigo(resultSet.getString(6));
                 producto.setNombre(resultSet.getString(7));
+                producto.setPrecio(10.00);
                 productos.add(producto);
             }
         } catch (SQLException | ParseException e) {

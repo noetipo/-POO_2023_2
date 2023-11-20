@@ -20,7 +20,7 @@ public class ProductoDao {
     }
 
     public void creaTablaProducto() {
-        String sqlTablaProducto = "create table if not exists producto( id int primary key, codigo text,nombre text, descripcion text,fecha_creacion DATE, id_categoria int )";
+        String sqlTablaProducto = "create table if not exists producto( id int primary key, codigo text,nombre text, descripcion text,fecha_creacion DATE, id_categoria int , precio real)";
 
         try {
             preparedStatement = conexionDB.connection.prepareStatement(sqlTablaProducto);
@@ -34,7 +34,7 @@ public class ProductoDao {
     public List<Producto> listarProductos() {
         creaTablaProducto();
         List<Producto> productos = new ArrayList<>();
-        String consultaListarproductos = "select p.id, p.codigo,p.nombre,p.descripcion,p.fecha_creacion,c.codigo,c.nombre from producto p left join categoria c on p.id_categoria = c.id";
+        String consultaListarproductos = "select p.id, p.codigo,p.nombre,p.descripcion,p.fecha_creacion,c.codigo,c.nombre, p.precio from producto p left join categoria c on p.id_categoria = c.id";
         try {
             preparedStatement = conexionDB.connection.prepareStatement(consultaListarproductos);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -48,6 +48,7 @@ public class ProductoDao {
                 producto.setFechaCreacionProducto(formatter.parse(resultSet.getString(5)));
                 producto.setCodigo(resultSet.getString(6));
                 producto.setNombre(resultSet.getString(7));
+                producto.setPrecioProducto(resultSet.getDouble(8));
                 productos.add(producto);
             }
         } catch (SQLException | ParseException e) {
@@ -61,7 +62,7 @@ public class ProductoDao {
     public boolean insertarProducto(Producto producto) {
         System.out.println(producto.toString());
         creaTablaProducto();
-        String consultaInsertarProducto = "INSERT INTO producto(codigo, nombre, descripcion, fecha_creacion, id_categoria) VALUES(?,?,?,?,?)";
+        String consultaInsertarProducto = "INSERT INTO producto(codigo, nombre, descripcion, fecha_creacion, id_categoria,precio) VALUES(?,?,?,?,?,?)";
         try {
             preparedStatement = conexionDB.connection.prepareStatement(consultaInsertarProducto);
             preparedStatement.setString(1, producto.getCodigoProducto());
@@ -70,6 +71,7 @@ public class ProductoDao {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             preparedStatement.setString(4, formatter.format(producto.getFechaCreacionProducto()));
             preparedStatement.setInt(5, producto.getId());
+            preparedStatement.setDouble(6, producto.getPrecioProducto());
             preparedStatement.execute();
             System.out.println("Insertar producto correctamente");
             this.conexionDB.cerrarConexionDB();
@@ -81,7 +83,7 @@ public class ProductoDao {
 
     public Producto productoPorId(Integer id) {
         creaTablaProducto();
-        String consultarProductoPorId = "select p.id, p.codigo, p.nombre, p.descripcion, c.codigo, c.nombre, p.id_categoria\n" +
+        String consultarProductoPorId = "select p.id, p.codigo, p.nombre, p.descripcion, c.codigo, c.nombre, p.id_categoria,p.precio\n" +
                 "from producto p\n" +
                 "         left join categoria c on p.id_categoria = c.id where p.id=?";
         Producto producto = new Producto();
@@ -99,6 +101,7 @@ public class ProductoDao {
                 producto.setCodigo(resultSet.getString(5));
                 producto.setId(resultSet.getInt(7));
                 producto.setNombre(resultSet.getString(6));
+                producto.setPrecioProducto(resultSet.getDouble(7));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -110,7 +113,7 @@ public class ProductoDao {
 
     public boolean actulizarCategoria(Producto producto) {
         creaTablaProducto();
-        String consultaInsertarCategoria = "UPDATE producto SET codigo=?, nombre=?, descripcion=?, id_categoria=? WHERE id=?";
+        String consultaInsertarCategoria = "UPDATE producto SET codigo=?, nombre=?, descripcion=?, id_categoria=?, precio=? WHERE id=?";
         try {
             preparedStatement = conexionDB.connection.prepareStatement(consultaInsertarCategoria);
             preparedStatement.setString(1, producto.getCodigoProducto());
@@ -118,6 +121,7 @@ public class ProductoDao {
             preparedStatement.setString(3, producto.getDescripcionProducto());
             preparedStatement.setInt(4, producto.getId());
             preparedStatement.setInt(5, producto.getIdProducto());
+            preparedStatement.setDouble(6, producto.getPrecioProducto());
             preparedStatement.execute();
             System.out.println("Actualizar producto correctamente");
             this.conexionDB.cerrarConexionDB();

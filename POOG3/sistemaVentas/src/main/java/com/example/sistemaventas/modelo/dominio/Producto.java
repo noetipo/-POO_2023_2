@@ -8,6 +8,7 @@ public class Producto extends Categoria {
     private String nombreProducto;
     private String descripcionProducto;
     private Date fechaCreacionProducto;
+    private Double precio;
 
     public Integer getIdProducto() {
         return idProducto;
@@ -49,6 +50,14 @@ public class Producto extends Categoria {
         this.fechaCreacionProducto = fechaCreacionProducto;
     }
 
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
@@ -57,6 +66,7 @@ public class Producto extends Categoria {
                 ", nombreProducto='" + nombreProducto + '\'' +
                 ", descripcionProducto='" + descripcionProducto + '\'' +
                 ", fechaCreacionProducto=" + fechaCreacionProducto +
+                ", precio=" + precio +
                 ", id=" + id +
                 ", codigo='" + codigo + '\'' +
                 ", nombre='" + nombre + '\'' +
