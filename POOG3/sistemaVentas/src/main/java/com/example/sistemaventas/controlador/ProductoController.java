@@ -41,6 +41,8 @@ public class ProductoController implements Initializable {
     @FXML
     private TextField descripcionText;
     @FXML
+    private TextField precioText;
+    @FXML
     private ComboBox categoriaBox;
 
     @FXML
@@ -117,6 +119,7 @@ public class ProductoController implements Initializable {
     }
 
     public void onInsertarButtonClick(ActionEvent actionEvent) {
+        System.out.println("click boton guardar");
         ProductoDao productoDao = new ProductoDao();
         Producto producto = new Producto();
         if (idProducto == 0) {
@@ -125,6 +128,7 @@ public class ProductoController implements Initializable {
             producto.setDescripcionProducto(descripcionText.getText());
             producto.setFechaCreacionProducto(new Date());
             producto.setId(categoriaSeleccionada.getId());
+            producto.setPrecioProducto(Double.valueOf(precioText.getText()));
             productoDao.insertarProducto(producto);
         } else {
             producto.setIdProducto(idProducto);
@@ -133,6 +137,7 @@ public class ProductoController implements Initializable {
             producto.setDescripcionProducto(descripcionText.getText());
             producto.setFechaCreacionProducto(new Date());
             producto.setId(categoriaSeleccionada.getId());
+            producto.setPrecioProducto(Double.valueOf(precioText.getText()));
             productoDao.actulizarCategoria(producto);
 
 
@@ -148,6 +153,7 @@ public class ProductoController implements Initializable {
         codigoText.clear();
         nombreText.clear();
         descripcionText.clear();
+        precioText.clear();
         categoriaBox.getSelectionModel().clearSelection();
     }
 
@@ -157,7 +163,8 @@ public class ProductoController implements Initializable {
         codigoText.setText(producto.getCodigoProducto());
         nombreText.setText(producto.getNombreProducto());
         descripcionText.setText(producto.getDescripcionProducto());
-        Categoria categoria= new Categoria();
+        precioText.setText(Double.toString(producto.getPrecioProducto()));
+        Categoria categoria = new Categoria();
         categoria.setId(producto.getId());
         categoria.setNombre(producto.getNombre());
         categoriaBox.getSelectionModel().select(categoria);
@@ -173,4 +180,5 @@ public class ProductoController implements Initializable {
         productoDao.eliminarProductoPorId(idProducto);
         listarProductos();
     }
+
 }

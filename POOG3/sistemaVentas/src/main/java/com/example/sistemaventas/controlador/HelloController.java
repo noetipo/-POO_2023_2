@@ -20,12 +20,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
-
-
     @FXML
     private TableView<Categoria> tablaCategorias;
-    @FXML
-    private TableColumn<Categoria, String> colid;
     @FXML
     private TableColumn<Categoria, String> colCodigo;
     @FXML
@@ -40,22 +36,24 @@ public class HelloController implements Initializable {
     private TextField nombreText;
     @FXML
     private TextField descripcionText;
-    private ObservableList<Categoria> categoriasObservableList = FXCollections.observableArrayList();
+
     @FXML
     public Button guardarBtn;
     Integer idCategoria = 0;
+    private ObservableList<Categoria> categoriasObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listarCategorias();
+
     }
 
     public void listarCategorias() {
         tablaCategorias.getItems().clear();
+
         CategoriaDao categoriaDao = new CategoriaDao();
         List<Categoria> categorias = categoriaDao.listarCategorias();
         categoriasObservableList.addAll(categorias);
-        colid.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getId())));
         colCodigo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodigo()));
         colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         colDescripcion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescripcion()));
@@ -65,23 +63,13 @@ public class HelloController implements Initializable {
 
         tablaCategorias.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-
                     if (newValue != null) {
-                        System.out.println(newValue.toString());
                         seleccionarCategoria(newValue);
                     }
                 }
         );
 
     }
-
-
-
-    private void seleccionarCategoria(Categoria categoria) {
-        System.out.println(categoria.getId());
-        idCategoria = categoria.getId();
-    }
-
     public void onInsertarButtonClick(ActionEvent actionEvent) {
         CategoriaDao categoriaDao = new CategoriaDao();
         Categoria categoria = new Categoria();
@@ -96,22 +84,21 @@ public class HelloController implements Initializable {
             categoria.setCodigo(codigoText.getText());
             categoria.setNombre(nombreText.getText());
             categoria.setDescripcion(descripcionText.getText());
-            categoria.setFechaCreacion(new Date());
             categoriaDao.actulizarCategoria(categoria);
-        }
 
-        listarCategorias();
+
+        }
+        idCategoria = 0;
         onLimpiarButtonClick(null);
-        idCategoria=0;
+        listarCategorias();
         guardarBtn.setText("Guardar");
     }
+
 
     public void onLimpiarButtonClick(ActionEvent actionEvent) {
         codigoText.clear();
         nombreText.clear();
         descripcionText.clear();
-        guardarBtn.setText("Guardar");
-        idCategoria = 0;
     }
     public void onSeleccionarButtonClick(ActionEvent actionEvent) {
         CategoriaDao categoriaDao = new CategoriaDao();
@@ -121,11 +108,15 @@ public class HelloController implements Initializable {
         descripcionText.setText(categoria.getDescripcion());
         guardarBtn.setText("Guardar Editar");
     }
+
+    private void seleccionarCategoria(Categoria categoria) {
+        System.out.println(categoria.getId());
+        idCategoria = categoria.getId();
+    }
     public void eliminarButtonClick(ActionEvent actionEvent) {
         CategoriaDao categoriaDao = new CategoriaDao();
         categoriaDao.eliminarCategoriaPorId(idCategoria);
         listarCategorias();
     }
-
 
 }

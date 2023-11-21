@@ -1,58 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.sistemaventas.controlador.MenuController">
+
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemaventas.controlador.MenuController">
     <left>
         <VBox prefHeight="400.0" prefWidth="117.0" style="-fx-background-color: #0D1824;" BorderPane.alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" onMouseClicked="#home" prefHeight="33.0" prefWidth="117.0"
-                        style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"
-                        text="Home" textFill="WHITE">
+                <Button mnemonicParsing="false" onMouseClicked="#home" prefHeight="33.0" prefWidth="117.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Home" textFill="WHITE">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#categoria" prefHeight="33.0" prefWidth="117.0"
-                        style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"
-                        text="Categoría" textFill="WHITE">
+                <Button mnemonicParsing="false" onMouseClicked="#categoria" prefHeight="33.0" prefWidth="117.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Categoría" textFill="WHITE">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#producto" prefHeight="33.0" prefWidth="117.0"
-                        style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"
-                        text="Producto" textFill="WHITE">
+                <Button mnemonicParsing="false" onMouseClicked="#producto" prefHeight="33.0" prefWidth="117.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Producto" textFill="WHITE">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#cliente" prefHeight="33.0" prefWidth="117.0"
-                        style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"
-                        text="Cliente" textFill="WHITE">
+                <Button mnemonicParsing="false" onMouseClicked="#cliente" prefHeight="33.0" prefWidth="117.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Cliente" textFill="WHITE">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#venta" prefHeight="33.0" prefWidth="117.0"
-                        style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"
-                        text="Venta" textFill="WHITE">
+                <Button mnemonicParsing="false" onMouseClicked="#venta" prefHeight="33.0" prefWidth="117.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Venta" textFill="WHITE">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                 </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#venta2" prefHeight="33.0" prefWidth="117.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Venta 2" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
             </children>
         </VBox>
     </left>
     <center>
-        <AnchorPane fx:id="ap" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0066CC;"
-                    BorderPane.alignment="CENTER">
+        <AnchorPane fx:id="ap" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0066CC;" BorderPane.alignment="CENTER">
             <children>
-                <Text layoutX="181.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Principal"
-                      wrappingWidth="115.10546875"/>
+                <Text layoutX="181.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Principal" wrappingWidth="115.10546875" />
             </children>
         </AnchorPane>
     </center>

@@ -59,6 +59,36 @@ public class ProductoDao {
         return productos;
     }
 
+    public List<Producto> listarProductosxNombre(String nombre) {
+        creaTablaProducto();
+        nombre = "%"+nombre+"%";
+        List<Producto> productos = new ArrayList<>();
+        String consultaListarproductos = "select p.id, p.codigo,p.nombre,p.descripcion,p.fecha_creacion,c.codigo,c.nombre, p.precio from producto p left join categoria c on p.id_categoria = c.id where p.nombre like ?";
+        try {
+            preparedStatement = conexionDB.connection.prepareStatement(consultaListarproductos);
+            preparedStatement.setString(1, nombre);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Producto producto = new Producto();
+                producto.setIdProducto(resultSet.getInt(1));
+                producto.setCodigoProducto(resultSet.getString(2));
+                producto.setNombreProducto(resultSet.getString(3));
+                producto.setDescripcionProducto(resultSet.getString(4));
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                producto.setFechaCreacionProducto(formatter.parse(resultSet.getString(5)));
+                producto.setCodigo(resultSet.getString(6));
+                producto.setNombre(resultSet.getString(7));
+                producto.setPrecioProducto(resultSet.getDouble(8));
+                productos.add(producto);
+            }
+        } catch (SQLException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+        this.conexionDB.cerrarConexionDB();
+        System.out.println("Listar categoria correctamente");
+        return productos;
+    }
+
     public boolean insertarProducto(Producto producto) {
         System.out.println(producto.toString());
         creaTablaProducto();

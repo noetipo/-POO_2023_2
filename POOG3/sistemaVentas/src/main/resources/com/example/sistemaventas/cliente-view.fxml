@@ -1,71 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0"
-      prefWidth="972.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.sistemaventas.controlador.ClienteController">
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemaventas.controlador.ClienteController">
     <children>
-        <TitledPane animated="false" prefHeight="273.0" prefWidth="972.0" text="CLIENTE">
+        <TitledPane animated="false" text="untitled">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
-                            style="-fx-background-color: #5D6D7E;">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="317.0" prefWidth="855.0" style="-fx-background-color: #D95F14;">
                     <children>
-                        <Label layoutX="59.0" layoutY="29.0" prefHeight="17.0" prefWidth="112.0" text="DNI"
-                               textFill="#fcf9f9">
+                        <Label layoutX="64.0" layoutY="41.0" prefHeight="17.0" prefWidth="103.0" text="DNI" />
+                        <Label layoutX="64.0" layoutY="86.0" prefHeight="17.0" prefWidth="103.0" text="NOMBRE" />
+                        <Label layoutX="64.0" layoutY="135.0" prefHeight="17.0" prefWidth="103.0" text="DIRECCIÓN" />
+                        <TextField fx:id="dniText" layoutX="188.0" layoutY="37.0" />
+                        <TextField fx:id="nombreText" layoutX="188.0" layoutY="82.0" />
+                        <TextField fx:id="direccionText" layoutX="188.0" layoutY="131.0" />
+                        <Button layoutX="443.0" layoutY="37.0" mnemonicParsing="false" onAction="#onInsertarButtonClick" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: #148BD9;" text="GUARDAR" textFill="#fcfafa" fx:id="guardarBtn">
                             <font>
-                                <Font name="System Bold" size="20.0"/>
+                                <Font name="Arial Black" size="12.0" />
                             </font>
-                        </Label>
-                        <Label layoutX="59.0" layoutY="82.0" prefHeight="17.0" prefWidth="112.0" text="NOMBRE"
-                               textFill="#f5f5f5">
-                            <font>
-                                <Font size="19.0"/>
-                            </font>
-                        </Label>
-                        <Label layoutX="59.0" layoutY="122.0" prefHeight="17.0" prefWidth="112.0" text="APELLIDO"
-                               textFill="WHITE">
-                            <font>
-                                <Font size="16.0"/>
-                            </font>
-                        </Label>
-                        <TextField fx:id="dniText" layoutX="191.0" layoutY="31.0"/>
-                        <TextField fx:id="nombreText" layoutX="191.0" layoutY="79.0"/>
-                        <TextField fx:id="apellidoText" layoutX="191.0" layoutY="122.0"/>
-                        <Button fx:id="guardarBtn" layoutX="433.0" layoutY="31.0" mnemonicParsing="false"
-                                onAction="#onInsertarButtonClick" prefHeight="25.0" prefWidth="157.0"
-                                style="-fx-background-color: blue;" text="Guardar" textFill="#f8f8f8"/>
-                        <Button layoutX="433.0" layoutY="71.0" mnemonicParsing="false" onAction="#onLimpiarButtonClick"
-                                prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: red;" text="Limpiar"
-                                textFill="#f8f7f7"/>
-                        <Button layoutX="433.0" layoutY="110.0" mnemonicParsing="false"
-                                onAction="#onSeleccionarButtonClick" prefHeight="25.0" prefWidth="157.0"
-                                style="-fx-background-color: blue;" text="Editar" textFill="#f8f8f8"/>
-                        <Button layoutX="433.0" layoutY="154.0" mnemonicParsing="false" onAction="#eliminarButtonClick"
-                                prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: blue;" text="Eliminar"
-                                textFill="#f8f8f8"/>
-                        <Label layoutX="59.0" layoutY="167.0" prefHeight="17.0" prefWidth="112.0" text="DIRECCION"
-                               textFill="WHITE">
-                            <font>
-                                <Font size="16.0"/>
-                            </font>
-                        </Label>
-                        <TextField fx:id="direccionText" layoutX="191.0" layoutY="167.0"/>
+                        </Button>
+                        <Button layoutX="443.0" layoutY="82.0" mnemonicParsing="false" onAction="#onLimpiarButtonClick" prefHeight="25.0" prefWidth="164.0" text="LIMPIAR" />
+                        <Button layoutX="443.0" layoutY="131.0" mnemonicParsing="false" onAction="#onSeleccionarButtonClick" prefHeight="25.0" prefWidth="164.0" text="EDITAR"/>
+                        <Button layoutX="443.0" layoutY="175.0" mnemonicParsing="false" onAction="#eliminarButtonClick" prefHeight="25.0" prefWidth="164.0" text="ELIMINAR" />
                     </children>
                 </AnchorPane>
             </content>
         </TitledPane>
-        <TableView fx:id="tablaClientes" prefHeight="316.0" prefWidth="972.0" style="-fx-background-color: #5DADE2;">
+        <TableView fx:id="tablaClientes" prefHeight="241.0" prefWidth="857.0">
             <columns>
-                <TableColumn fx:id="colid" prefWidth="70.0" text="id"/>
-                <TableColumn fx:id="coldni" prefWidth="96.0" text="DNI"/>
-                <TableColumn fx:id="colNombre" prefWidth="115.0" text="NOMBRE"/>
-                <TableColumn fx:id="colApellido" prefWidth="144.0" text="APELLIDO"/>
-                <TableColumn fx:id="colDireccion" prefWidth="148.0" text="DIRECCION"/>
-                <TableColumn fx:id="colFechaCreacion" prefWidth="137.0" text="FECHA CREACION"/>
-                <TableColumn fx:id="colFechaActualizacion" prefWidth="180.0" text="FECHA ACTUALIZACION"/>
+                <TableColumn fx:id="colDni" prefWidth="117.0" text="DNI" />
+                <TableColumn fx:id="colNombre" prefWidth="247.0" text="NOMBRE" />
+                <TableColumn fx:id="colDireccion" prefWidth="189.0" text="DIRECCION" />
+                <TableColumn fx:id="colFechaCreacion" prefWidth="215.0" text="FECHA CREACIÓN" />
             </columns>
         </TableView>
     </children>

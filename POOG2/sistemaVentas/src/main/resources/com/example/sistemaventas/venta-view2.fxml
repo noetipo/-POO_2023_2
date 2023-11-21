@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="codigoText" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="1042.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sistemaventas.controlador.VentaController2 ">
+    <children>
+        <TitledPane animated="false" prefHeight="343.0" prefWidth="933.0" text="untitled">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="317.0" prefWidth="1038.0">
+                    <children>
+                        <ComboBox fx:id="clienteBox" layoutX="119.0" layoutY="146.0" prefHeight="25.0" prefWidth="374.0" />
+                        <Label layoutX="25.0" layoutY="150.0" prefHeight="17.0" prefWidth="75.0" text="Cliente" />
+                        <Button layoutX="370.0" layoutY="278.0" mnemonicParsing="false" onAction="#guardarVenta" prefHeight="25.0" prefWidth="85.0" text="Guardar" />
+                        <Button layoutX="286.0" layoutY="278.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Cancelar" />
+                        <TextField fx:id="baseImponibleText" layoutX="33.0" layoutY="278.0" prefHeight="25.0" prefWidth="56.0" />
+                        <Label layoutX="14.0" layoutY="282.0" prefHeight="17.0" prefWidth="11.0" text="BI" />
+                        <Label layoutX="98.0" layoutY="282.0" prefHeight="17.0" prefWidth="27.0" text="IGV" />
+                        <TextField fx:id="igvText" layoutX="134.0" layoutY="278.0" prefHeight="25.0" prefWidth="57.0" />
+                        <Label layoutX="198.0" layoutY="282.0" prefHeight="17.0" prefWidth="37.0" text="TOTAL" />
+                        <TextField fx:id="totalText" layoutX="235.0" layoutY="278.0" prefHeight="25.0" prefWidth="43.0" />
+                        <Button layoutX="613.0" layoutY="278.0" mnemonicParsing="false" onAction="#agregarProducto" prefHeight="25.0" prefWidth="200.0" text="AGREGAR PRODUCTO" />
+                        <TableView fx:id="tablaProductos" layoutX="566.0" layoutY="70.0" prefHeight="196.0" prefWidth="360.0">
+                            <columns>
+                                <TableColumn fx:id="colCodigoProducto" prefWidth="71.0" text="CÓDIGO" />
+                                <TableColumn fx:id="colNombreProducto" prefWidth="108.0" text="NOMBRE" />
+                                <TableColumn fx:id="colDescripcionProducto" prefWidth="103.0" text="DESCRIPCIÓN" />
+                                <TableColumn fx:id="colPrecioProducto" prefWidth="138.0" text="PRECIO" />
+                                <TableColumn fx:id="colFechaCreacionProducto" prefWidth="137.0" text="FECHA CREACION" />
+                            </columns>
+                        </TableView>
+                        <Button layoutX="403.0" layoutY="17.0" mnemonicParsing="false" onAction="#eliminarItemDetalle" text="Elimniar item" />
+                  <TextField fx:id="codigo" layoutX="511.0" layoutY="17.0" onAction="#onEnter" />
+                  <Label layoutX="28.0" layoutY="106.0" prefHeight="17.0" prefWidth="52.0" text="Fecha:" />
+                  <Label layoutX="28.0" layoutY="209.0" text="Buscar:" />
+                  <TextField fx:id="txtBuscador" layoutX="117.0" layoutY="205.0" prefHeight="25.0" prefWidth="338.0" />
+                  <Button fx:id="butBuscar" layoutX="463.0" layoutY="205.0" mnemonicParsing="false" onAction="#listarProductos_busqueda" text="Buscar" />
+                  <Label layoutX="120.0" layoutY="106.0" prefHeight="17.0" prefWidth="213.0" text="21 de noviembre del 2023" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </TitledPane>
+            <TableView fx:id="tablaVentaDetalle" layoutX="14.0" layoutY="356.0" prefHeight="236.0" prefWidth="918.0">
+                <columns>
+                    <TableColumn fx:id="colCodigoProductoVentaDetalle" prefWidth="55.0" text="CÓDIGO" />
+                    <TableColumn fx:id="colNombreCategoriaProducto" prefWidth="137.0" text="CATEGORIA" />
+                    <TableColumn fx:id="colNombreProductoVentaDetalle" prefWidth="118.0" text="NOMBRE" />
+                    <TableColumn fx:id="colPrecioUnitarioProductoVentaDetalle" prefWidth="48.0" text="P.U" />
+                    <TableColumn fx:id="colCantidadProductoVentaDetalle" onEditCommit="#onEditar" prefWidth="48.0" text="CANT" />
+                    <TableColumn fx:id="colBaseImponibleProductoVentaDetalle" prefWidth="48.0" text="B. I." />
+                    <TableColumn fx:id="colIgvProductoVentaDetalle" prefWidth="48.0" text="IGV" />
+                    <TableColumn fx:id="colTotalProductoVentaDetalle" prefWidth="48.0" text="TOTAL" />
+                </columns>
+            </TableView>
+    </children>
+</AnchorPane>

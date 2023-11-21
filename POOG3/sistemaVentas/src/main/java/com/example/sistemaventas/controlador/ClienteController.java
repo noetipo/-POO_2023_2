@@ -20,68 +20,58 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ClienteController implements Initializable {
-
-
     @FXML
     private TableView<Cliente> tablaClientes;
     @FXML
-    private TableColumn<Cliente, String> colid;
-    @FXML
-    private TableColumn<Cliente, String> coldni;
+    private TableColumn<Cliente, String> colDni;
     @FXML
     public TableColumn<Cliente, String> colNombre;
-    @FXML
-    public TableColumn<Cliente, String> colApellido;
     @FXML
     public TableColumn<Cliente, String> colDireccion;
     @FXML
     public TableColumn<Cliente, String> colFechaCreacion;
     @FXML
-    public TableColumn<Cliente, String> colFechaActualizacion;
-    @FXML
     private TextField dniText;
     @FXML
     private TextField nombreText;
     @FXML
-    private TextField apellidoText;
-    @FXML
     private TextField direccionText;
-    private ObservableList<Cliente> clientesObservableList = FXCollections.observableArrayList();
+
     @FXML
     public Button guardarBtn;
     Integer idCliente = 0;
+    private ObservableList<Cliente> clientesObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listarClientes();
+
     }
 
     public void listarClientes() {
         tablaClientes.getItems().clear();
+
         ClienteDao clienteDao = new ClienteDao();
         List<Cliente> clientes = clienteDao.listarClientes();
         clientesObservableList.addAll(clientes);
-        colid.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getId())));
-        coldni.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDni()));
+        colDni.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDni()));
         colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         colDireccion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDireccion()));
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         colFechaCreacion.setCellValueFactory(cellData -> new SimpleStringProperty(formatter.format(cellData.getValue().getFechaCreacion())));
-        colFechaActualizacion.setCellValueFactory(cellData -> new SimpleStringProperty(formatter.format(cellData.getValue().getFechaActualizacion())));
         tablaClientes.setItems(clientesObservableList);
 
         tablaClientes.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     if (newValue != null) {
-                        seleccionarCliente(newValue);
+                        seleccionarCategoria(newValue);
                     }
                 }
         );
 
     }
 
-    private void seleccionarCliente(Cliente cliente) {
-
+    private void seleccionarCategoria(Cliente cliente) {
         idCliente = cliente.getId();
     }
 
@@ -91,34 +81,28 @@ public class ClienteController implements Initializable {
         if (idCliente == 0) {
             cliente.setDni(dniText.getText());
             cliente.setNombre(nombreText.getText());
-            cliente.setApellido(apellidoText.getText());
             cliente.setDireccion(direccionText.getText());
             cliente.setFechaCreacion(new Date());
-            cliente.setFechaActualizacion(new Date());
             clienteDao.insertarCliente(cliente);
         } else {
             cliente.setId(idCliente);
             cliente.setDni(dniText.getText());
             cliente.setNombre(nombreText.getText());
-            cliente.setApellido(apellidoText.getText());
             cliente.setDireccion(direccionText.getText());
-            cliente.setFechaActualizacion(new Date());
             clienteDao.actulizarCliente(cliente);
-        }
 
-        listarClientes();
-        onLimpiarButtonClick(null);
+
+        }
         idCliente = 0;
+        onLimpiarButtonClick(null);
+        listarClientes();
         guardarBtn.setText("Guardar");
     }
 
     public void onLimpiarButtonClick(ActionEvent actionEvent) {
         dniText.clear();
         nombreText.clear();
-        apellidoText.clear();
         direccionText.clear();
-        guardarBtn.setText("Guardar");
-        idCliente = 0;
     }
 
     public void onSeleccionarButtonClick(ActionEvent actionEvent) {
@@ -126,7 +110,6 @@ public class ClienteController implements Initializable {
         Cliente cliente = clienteDao.clientePorId(idCliente);
         dniText.setText(cliente.getDni());
         nombreText.setText(cliente.getNombre());
-        apellidoText.setText(cliente.getApellido());
         direccionText.setText(cliente.getDireccion());
         guardarBtn.setText("Guardar Editar");
     }
@@ -136,6 +119,4 @@ public class ClienteController implements Initializable {
         clienteDao.eliminarClientePorId(idCliente);
         listarClientes();
     }
-
-
 }

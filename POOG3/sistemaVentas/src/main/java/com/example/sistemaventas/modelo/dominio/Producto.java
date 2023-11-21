@@ -7,8 +7,8 @@ public class Producto extends Categoria {
     private String codigoProducto;
     private String nombreProducto;
     private String descripcionProducto;
+    private Double precioProducto;
     private Date fechaCreacionProducto;
-    private Double precio;
 
     public Integer getIdProducto() {
         return idProducto;
@@ -42,20 +42,20 @@ public class Producto extends Categoria {
         this.descripcionProducto = descripcionProducto;
     }
 
+    public Double getPrecioProducto() {
+        return precioProducto;
+    }
+
+    public void setPrecioProducto(Double precioProducto) {
+        this.precioProducto = precioProducto;
+    }
+
     public Date getFechaCreacionProducto() {
         return fechaCreacionProducto;
     }
 
     public void setFechaCreacionProducto(Date fechaCreacionProducto) {
         this.fechaCreacionProducto = fechaCreacionProducto;
-    }
-
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
     }
 
     @Override
@@ -66,7 +66,6 @@ public class Producto extends Categoria {
                 ", nombreProducto='" + nombreProducto + '\'' +
                 ", descripcionProducto='" + descripcionProducto + '\'' +
                 ", fechaCreacionProducto=" + fechaCreacionProducto +
-                ", precio=" + precio +
                 ", id=" + id +
                 ", codigo='" + codigo + '\'' +
                 ", nombre='" + nombre + '\'' +

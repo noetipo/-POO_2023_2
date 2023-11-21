@@ -13,8 +13,9 @@ public class ConexionDB {
             String url = "jdbc:sqlite:" + dbName;
             connection = DriverManager.getConnection(url);
             System.out.println("Conexion exitosa a SQLite.");
+
         } catch (SQLException exception) {
-            System.out.println("Error al conectar a SQLite: " + exception.getMessage());
+            System.out.println("Error al conectar a SQlite: " + exception.getMessage());
         }
     }
 
@@ -24,6 +25,7 @@ public class ConexionDB {
                 connection.close();
                 System.out.println("Conexion cerrada");
             }
+
         } catch (SQLException exception) {
             System.out.println("Error al cerrar la conexion: " + exception.getMessage());
         }

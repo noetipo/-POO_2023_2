@@ -19,13 +19,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
+
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class VentaController implements Initializable {
+public class VentaController2 implements Initializable {
     @FXML
     public TextField codigo;
     @FXML
@@ -106,6 +107,9 @@ public class VentaController implements Initializable {
     private TextField igvText;
     @FXML
     private TextField totalText;
+
+    @FXML
+    private TextField txtBuscador;
     private ObservableList<Venta> ventasObservableList = FXCollections.observableArrayList();
     private ObservableList<Cliente> clientesObservableList = FXCollections.observableArrayList();
     int idCliente = 0;
@@ -175,6 +179,28 @@ public class VentaController implements Initializable {
         tablaProductos.getItems().clear();
         ProductoDao categoriaDao = new ProductoDao();
         List<Producto> productos = categoriaDao.listarProductos();
+        productosObservableList.addAll(productos);
+        colCodigoProducto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodigoProducto()));
+        colNombreProducto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombreProducto()));
+        colDescripcionProducto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescripcionProducto()));
+        colPrecioProducto.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getPrecioProducto())));
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        colFechaCreacionProducto.setCellValueFactory(cellData -> new SimpleStringProperty(formatter.format(cellData.getValue().getFechaCreacionProducto())));
+        colNombreCategoriaProducto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+        tablaProductos.setItems(productosObservableList);
+        tablaProductos.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if (newValue != null) {
+                        seleccionarProducto(newValue);
+                    }
+                }
+        );
+    }
+
+    public void listarProductos_busqueda(){
+        tablaProductos.getItems().clear();
+        ProductoDao prodDao = new ProductoDao();
+        List<Producto> productos = prodDao.listarProductosxNombre(txtBuscador.getText());
         productosObservableList.addAll(productos);
         colCodigoProducto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodigoProducto()));
         colNombreProducto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombreProducto()));

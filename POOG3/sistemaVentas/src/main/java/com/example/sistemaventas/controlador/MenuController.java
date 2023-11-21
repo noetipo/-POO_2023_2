@@ -17,27 +17,27 @@ public class MenuController implements Initializable {
     public BorderPane bp;
     public AnchorPane ap;
 
-    public void home(MouseEvent mouseEvent) {
-        bp.setCenter(ap);
-    }
-
-    public void categoria(MouseEvent mouseEvent) {
-        loadPage("/com/example/sistemaventas/hello-view.fxml");
-    }
-
-    public void cliente(MouseEvent mouseEvent) {
-        loadPage("/com/example/sistemaventas/cliente-view.fxml");
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
+    public void home(MouseEvent mouseEvent) {
+        bp.setCenter(ap);
+    }
+
+    public void categoria(MouseEvent mouseEvent) {
+        loadPage("/com/example/sistemaventas/hello-view");
+    }
+
+    public void cliente(MouseEvent mouseEvent) {
+        loadPage("/com/example/sistemaventas/cliente-view");
+    }
+
     private void loadPage(String page) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource(page));
+            root = FXMLLoader.load(getClass().getResource(page + ".fxml"));
         } catch (IOException e) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -45,10 +45,14 @@ public class MenuController implements Initializable {
     }
 
     public void producto(MouseEvent mouseEvent) {
-        loadPage("/com/example/sistemaventas/producto-view.fxml");
+        loadPage("/com/example/sistemaventas/producto-view");
     }
 
-    public void prueba(MouseEvent mouseEvent) {
-loadPage("/com/example/sistemaventas/prueba.fxml");
+    public void venta(MouseEvent mouseEvent) {
+        loadPage("/com/example/sistemaventas/venta-view");
+    }
+
+    public void venta2(MouseEvent mouseEvent) {
+        loadPage("/com/example/sistemaventas/venta-view2");
     }
 }

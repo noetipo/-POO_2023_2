@@ -15,12 +15,11 @@ public class CategoriaDao {
     private final ConexionDB conexionDB;
     private PreparedStatement preparedStatement;
 
+    public CategoriaDao() { this.conexionDB = new ConexionDB(); }
 
-    public CategoriaDao() {
-        this.conexionDB = new ConexionDB();
-    }
     public void creaTablaCategoria() {
         String sqlTablaCategoria = "CREATE TABLE IF NOT EXISTS categoria (id integer primary key,codigo text,nombre text, descripcion text,fecha_creacion DATE)";
+
         try {
             preparedStatement = conexionDB.connection.prepareStatement(sqlTablaCategoria);
             preparedStatement.execute();
@@ -54,8 +53,6 @@ public class CategoriaDao {
         System.out.println("Listar categoria correctamente");
         return categorias;
     }
-
-
     public boolean insertarCategoria(Categoria categoria) {
         creaTablaCategoria();
         String consultaInsertarCategoria = "INSERT INTO categoria(codigo,nombre,descripcion,fecha_creacion) VALUES(?,?,?,?)";
@@ -85,7 +82,7 @@ public class CategoriaDao {
             if (resultSet.next()) {
                 categoria.setId(resultSet.getInt(1));
                 categoria.setCodigo(resultSet.getString(2));
-                categoria.setCodigo(resultSet.getString(2));
+                //categoria.setCodigo(resultSet.getString(2));
                 categoria.setNombre(resultSet.getString(3));
                 categoria.setDescripcion(resultSet.getString(4));
             }
@@ -93,9 +90,10 @@ public class CategoriaDao {
             throw new RuntimeException(e);
         }
         this.conexionDB.cerrarConexionDB();
-        System.out.println("Lista categoria por id correctamente");
+        System.out.println("categoriaPorId de id = " + id + " devuelto correctamente");
         return categoria;
     }
+
     public boolean actulizarCategoria(Categoria categoria) {
         creaTablaCategoria();
         String consultaInsertarCategoria = "UPDATE categoria SET codigo =?,nombre=?,descripcion=? WHERE id=?";
@@ -115,13 +113,11 @@ public class CategoriaDao {
     }
     public void eliminarCategoriaPorId(Integer id) {
         creaTablaCategoria();
-        String consultaCategoriaPorId = "delete  from categoria where id =?";
+        String consultaCategoriaPorId = "delete  from categoria where id=?";
         try {
             preparedStatement = conexionDB.connection.prepareStatement(consultaCategoriaPorId);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -130,6 +126,5 @@ public class CategoriaDao {
 
 
     }
-
 
 }
